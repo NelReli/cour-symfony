@@ -21,7 +21,7 @@ final class AdminProduitController extends AbstractController
     {
          // outil debug comme var_dumps()
         dump($produitRepository->findAll());
-         dump(get_class_methods($produitRepository));
+        dump(get_class_methods($produitRepository));
 
         return $this->render('admin_produit/index.html.twig', [
             'produits' => $produitRepository->findAll(),

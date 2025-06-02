@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+    <h1>Produit</h1>
+
+    <div class="table">
+
+                <h2>{{ produit.nom }}</h2>
+
+                <p>{{ produit.description }}</p>
+
+                <img src="{{ asset('images/produit_image/' ~ produit.img) }}" alt="{{ produit.img }}">
+
+                <p>{{ produit.prix }}</p>
+
+    </div>
+
+    <a href="{{ path('home') }}">Retour à l'accueil</a>
+
+
+
+    {# {{ include('admin_produit/_delete_form.html.twig') }} #}
+{% endblock %}

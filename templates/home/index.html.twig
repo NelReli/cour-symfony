@@ -53,6 +53,24 @@
 
 	{% endif %}
 
+	{% for category in coucou %}
+	<h2> {{ category.name }} </h2>
+		<div class="cardd">
+			{% for produit in produits %}
+				{% if produit.category.id == category.id %}
+					<div class="flex">
+						<h3>{{ produit.nom }}</h3>
+						<a href="{{ path('show', {'id': produit.id}) }}">
+						<img src="{{ asset('images/produit_image/' ~ produit.img) }}" alt="{{ produit.img }}">
+						</a>
+						<p>{{ produit.description }}</p>
+						<p>{{ produit.prix }} €</p>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+    {% endfor %}
+
 
 {% endblock %}
 

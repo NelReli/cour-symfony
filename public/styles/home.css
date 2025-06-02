@@ -2,3 +2,12 @@
     color: red;
 }
 
+.card{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.card img{
+    width: 200px;
+}
