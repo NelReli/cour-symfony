@@ -15,7 +15,7 @@
     /* border: 2px solid gray; */
 }
 
-.flex{
+.flex2{
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -28,11 +28,11 @@
     border-radius: 20px;
 }
 
-.flex h2{
+.flex2 h2{
     text-transform: capitalize;
     letter-spacing: 2px;
 }
 
-.flex p:last-child{
+.flex2 p:last-child{
     font-weight: bold;
 }

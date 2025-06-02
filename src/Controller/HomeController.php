@@ -21,6 +21,7 @@ final class HomeController extends AbstractController
             ]);
         }
 
+        
         #[Route('/produit/{id}', name: 'show', methods: ['GET'])]
         public function show(Produit $produit):Response
         {
@@ -30,11 +31,10 @@ final class HomeController extends AbstractController
         }
 
 
-
-    #[Route('/apropos', name: 'apropos')]
-    public function apropos(): Response
-    {
-        return $this->render('apropos/index.html.twig');
-    }
+        #[Route('/apropos', name: 'apropos')]
+        public function apropos(): Response
+        {
+            return $this->render('apropos/index.html.twig');
+        }
 
 }
