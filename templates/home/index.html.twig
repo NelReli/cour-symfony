@@ -80,7 +80,7 @@
 
 					<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
 						<a href="{{ path('show', {'id': produit.id}) }}">
-							<img src="{{ asset('images/produit_image/' ~ produit.img) }}" alt="{{ produit.img }}">
+							<img src="{{ asset('images/produit_image/' ~ produit.img) }}" alt="{{ produit.nom }}">
 						</a>
 						<div class="p-5">
 							<a href="{{ path('show', {'id': produit.id}) }}">
@@ -95,12 +95,45 @@
 							</a>
 						</div>
 					</div>
-					
+
 				{% endif %}
 			{% endfor %}
 		</div>
     {% endfor %}
 
+	{# Formulaire #}
+	<div class="border m-auto text-center flex flex-col gap-20">
+		<h3 class="text-2xl">Exemple de form pour la méthode find()</h3>
+		
+			<form action="{{ path('home') }}" method="POST" data-turbo="false">
+				<input type="hidden" name="form" value="select_produit">
+				<select name="produit" id="produit">
+					{% if produits %}
+						{% for produit in produits %}
+							<option value="{{ produit.id }}">{{ produit.nom }}</option>
+						{% endfor %}
+					{% endif %}
+				</select>
+				<button class="btn btn-primary" type="submit">Rechercher</button>
+				</form>
+				
+					{% if selectedProduit %}
+						<div class="card">
+							<h2>Produit sélectionné :</h2>
+							<ul>
+								<li><strong>Nom :</strong>{{ selectedProduit.nom }}</li>
+								<li><strong>Description :</strong>{{ selectedProduit.description }}</li>
+								<li><strong>Prix :</strong>{{ selectedProduit.prix }}€</li>
+								<li><strong>Catégorie :</strong>{{ selectedProduit.category.name }}</li>
+							</ul>
+							<div>
+								{# <img src="{{ asset('images/' ~ selectedProduit.img) }}" alt="{{ selectedProduit.nom }}" style="width: 200px;"> #}
+								<img src="{{ asset('images/produit_image/' ~ selectedProduit.img) }}" alt="{{ selectedProduit.nom }}">
+							</div>
+						</div>
+					{% endif %}
+						
+	</div>
 
 
 {% endblock %}

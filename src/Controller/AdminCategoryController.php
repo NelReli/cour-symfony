@@ -37,6 +37,7 @@ final class AdminCategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
+            $this->addFlash('success', "Le produit à bien été modifié"); // pour ajouter des messages de réussite de requête
             return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -60,9 +61,11 @@ final class AdminCategoryController extends AbstractController
         $form = $this->createForm(CategoryForm::class, $category);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', "Le produit à bien été modifié"); // pour ajouter des messages de réussite de requête
             return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -80,6 +83,7 @@ final class AdminCategoryController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash('success', "Le produit à bien été modifié"); // pour ajouter des messages de réussite de requête
         return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }
