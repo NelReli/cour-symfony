@@ -87,12 +87,38 @@
 								<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ produit.nom }}</h5>
 							</a>
 							<p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ produit.description }}</p>
-							<a href="{{ path('show', {'id': produit.id}) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+							{% if produit.stock < 3 and produit.stock > 0 %}
+								<p class="mb-3 text-red-500">Commandez vite bientôt en rupture de stock!!! </p>
+							{% elseif produit.stock > 3 %}
+								<p class="mb-3">Disponible </p>							
+							{% else %}
+								<p class="mb-3 text-red-500">Victime de son succès </p>														
+							{% endif %}
+
+							<form action="" method="GET"></form>
+
+							<a href="{{ path('show', {'id': produit.id}) }}" class="mb-3 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 								Read more
 								<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
 									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 								</svg>
 							</a>
+							<form class="" action="{{ path('panier_ajouter', {id : produit.id}) }}" method="GET">
+								<label for="">Quantité :</label>
+								<input 	type="number" 
+										name="quantite" 
+										id="quantite_{{produit.id}}"
+										value="0"
+										min="0"
+										max="{{ produit.stock }}"
+										class="w-10 border p-1 rounded-lg"
+										>
+
+									<button class="btn btn-primary" type="submit">Panier</button>
+										
+							</form>
+
 						</div>
 					</div>
 
@@ -130,6 +156,7 @@
 								{# <img src="{{ asset('images/' ~ selectedProduit.img) }}" alt="{{ selectedProduit.nom }}" style="width: 200px;"> #}
 								<img src="{{ asset('images/produit_image/' ~ selectedProduit.img) }}" alt="{{ selectedProduit.nom }}">
 							</div>
+	
 						</div>
 					{% endif %}
 						

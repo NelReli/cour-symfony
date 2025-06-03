@@ -24,6 +24,7 @@ class ProduitForm extends AbstractType
                 'label' => 'Image',
             ] ) 
             ->add('prix')
+            ->add('stock')
             ->add('category', EntityType::class, [
                 'class' => Category::class, 
                 'choice_label' => 'id',

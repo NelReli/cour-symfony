@@ -20,11 +20,11 @@
     <a href="{{ path('home') }}">Retour à l'accueil</a> #}
 
 <div class="flex flex-col w-full items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-    <img class="object-cover rounded-t-lg h-96 md:h-auto w-48 md:rounded-none md:rounded-s-lg" src="{{ asset('images/produit_image/' ~ produit.img) }}" alt="{{ produit.img }}">
+    <img class="object-cover rounded-t-lg h-96 md:h-auto w-80 md:rounded-none md:rounded-s-lg" src="{{ asset('images/produit_image/' ~ produit.img) }}" alt="{{ produit.img }}">
     <div class="flex flex-col justify-between p-4 leading-normal">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ produit.nom }}</h5>
-        <p class="mb-3 text-9xl font-normal text-gray-700 dark:text-gray-400">{{ produit.description }}</p>
-        <p class="mb-3 text-9xl font-normal text-gray-700 dark:text-gray-400">{{ produit.prix }}</p>
+        <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{{ produit.nom }}</h5>
+        <p class="mb-3 text-xl font-normal text-gray-700 dark:text-gray-400">{{ produit.description }}</p>
+        <p class="mb-3 text-2xl font-normal text-gray-700 dark:text-gray-400">{{ produit.prix }}</p>
     </div>
 </div>
     

@@ -27,7 +27,7 @@ class RegistrationForm extends AbstractType
     {
     
 
-        // construit le formulaire avec les chompas demandés
+        // construit le formulaire avec les champs demandés
 
         $builder
 
@@ -35,11 +35,7 @@ class RegistrationForm extends AbstractType
                 'attr' => [
                     'class' => 'form-control ',
                     'placeholder' => 'Email',
-                    
-                 
-                    
-                    
-                    
+
             ]])
 
             ->add('telephone',TextType::class)
