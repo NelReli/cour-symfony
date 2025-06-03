@@ -6,5 +6,22 @@
 
 <h1 class="text-3xl">Panier</h1>
 
+{% if paniers is empty  %}
+    <p>Votre panier est vide</p>
+{% endif %}
+
+{% for panier in paniers %}
+    <div class="card">
+        <p>{{ panier.produit.nom }}</p>
+        <p>{{ panier.produit.prix }}</p>
+        <p>{{ panier.quantity}}</p>
+        <p>Total = {{ panier.quantity }} * {{ panier.produit.prix }}  </p>
+
+    </div>
+
+{% endfor %}
 
 {% endblock %}
+
+
+

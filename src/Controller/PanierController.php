@@ -26,7 +26,7 @@ final class PanierController extends AbstractController
         dump($this->getUser());
         dump($paniers);
         return $this->render('panier/index.html.twig', [
-            'lignes' => $paniers,
+            'paniers' => $paniers,
         ]);
     }
 
@@ -57,6 +57,7 @@ final class PanierController extends AbstractController
             // si une ligne existe déja dans le repository
             // on ajoute la quantité demandé à quantité existante
             $ligne->setQuantity($ligne->getQuantity()+$quantite);
+            $produit->setStock($produit->getStock()-$quantite);
             
         }else{
             // sinon (le produit n'est pas encore dans le panier)
@@ -68,6 +69,8 @@ final class PanierController extends AbstractController
             $ligne->setProduit($produit);
             // on definie la quantité
             $ligne->setQuantity($quantite);
+            $produit->setStock($produit->getStock()-$quantite);
+
 
             // on indique a Doctrine qu'on veut sauvegarder cette ligne de panier 
             $em->persist($ligne); // persist cest comme prepare //
@@ -81,6 +84,7 @@ final class PanierController extends AbstractController
 
         return $this->redirect($request->headers->get('referer')); // renvoi a la page precedente, le user va vers la page d'ou il vient
     }
+
 
 
     #[Route('/panier/retirer/{id}', name: 'panier_retirer')]
