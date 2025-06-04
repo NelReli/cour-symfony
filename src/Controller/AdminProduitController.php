@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Form\ProduitForm;
+use App\Repository\CategoryRepository;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\TextUI\XmlConfiguration\File;
@@ -21,13 +22,13 @@ final class AdminProduitController extends AbstractController
     {
          // outil debug comme var_dumps()
         dump($produitRepository->findAll());
-        dump(get_class_methods($produitRepository));
 
         return $this->render('admin_produit/index.html.twig', [
             'produits' => $produitRepository->findAll(),
             'salut'=> "bonjour"
         ]);
     }
+
 
     #[Route('/new', name: 'app_admin_produit_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -150,4 +151,59 @@ final class AdminProduitController extends AbstractController
          $this->addFlash('success', "Le produit à bien été modifié"); // pour ajouter des messages de réussite de requête
         return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
+// exo------------------------
+
+    #[Route(name: 'app_admin_produit_index', methods: ['GET'])]
+    public function searchOne(ProduitRepository $produitRepository, CategoryRepository $categoryRepository): Response
+    {
+
+        dump( $produitRepository->findOneBy(['nom' => 'robe midi fluide']) );
+        // dd( $produitRepository->findOneBy(['nom' => 'robe midi fluide'])); dd veut dire dump & die
+
+        
+        // exo2-----------------------------------
+            dump( $produitRepository->findBy(['category' => '1'])); // utilisation de l id
+            dump($produitRepository->findAll());
+
+            //------------------
+                $category = $categoryRepository->findOneBy(['name' => 'femme']);
+
+                if ($category) {
+                    $produits = $produitRepository->findBy(['category' => $category]);
+                    dump($produits);
+                } else {
+                    dump('Catégorie "femme" non trouvée');
+                }
+            //------------------
+        
+        // exo3--------------------------------
+        dump($produitRepository->findBy([ 'stock' => '200' ]));
+        
+        // exo4--------------------------------
+        dump($produitRepository->findBy( 
+                [],
+                ['prix' => 'DESC'],
+                3,
+        ));
+
+        $produit = $produitRepository->findBy( 
+                [],
+                ['prix' => 'DESC'],
+                3,
+        );
+
+
+
+
+        return $this->render('admin_produit/index.html.twig', [
+            'produits' => $produitRepository->findAll(),
+            'salut'=> "bonjour",
+            'produit' => $produit
+        ]);
+    }
+
+// exo------------------------
+
 }

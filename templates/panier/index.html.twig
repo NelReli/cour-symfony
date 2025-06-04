@@ -10,18 +10,35 @@
     <p>Votre panier est vide</p>
 {% endif %}
 
-{% for panier in paniers %}
-    <div class="card">
-        <p>{{ panier.produit.nom }}</p>
-        <p>{{ panier.produit.prix }}</p>
-        <p>{{ panier.quantity}}</p>
-        <p>Total = {{ panier.quantity }} * {{ panier.produit.prix }}  </p>
-
-    </div>
-
-{% endfor %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Quantié</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+            <tbody>
+                {% for panier in paniers %}
+                    <div class=" grid grid-cols-4 gap-4">
+                        {# <p>{{ panier.produit.nom }}</p>
+                        <p>{{ panier.produit.prix }}</p>
+                        <p>{{ panier.quantity}}</p>
+                        <p><strong>{{ total }}</strong> </p> #}
+                            <tr>
+                                <td>{{ panier.produit.nom }}</td>
+                                <td>{{ panier.produit.prix }}</td>
+                                <td>{{ panier.quantity }}</td>
+                                <td><strong>{{ total }}</strong></td>
+                                <td>
+                                    <a class="btn btn-light" href="">Modifier</a>
+                                    <a class="btn btn-light" href="">Supprimer</a>
+                                </td>
+                            </tr>
+                    </div>
+                {% endfor %}
+            </tbody>
+        </table>
 
 {% endblock %}
-
-
-

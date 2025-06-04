@@ -39,8 +39,21 @@
                 <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
+
+
         </tbody>
     </table>
-
     <a href="{{ path('app_admin_produit_new') }}">Create new</a>
+
+    
+    {# <br>
+<hr>
+<h1>EXO 04</h1>
+        {% for produits in produit %}
+    <div class="cardd">
+            <p>{{ produits.nom }}</p>
+            <p>{{ produits.prix }}</p>
+    </div>
+        {% endfor %}
+<hr> #}
 {% endblock %}
