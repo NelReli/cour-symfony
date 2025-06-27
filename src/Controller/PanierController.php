@@ -63,6 +63,10 @@ final class PanierController extends AbstractController
         dump($request->query); // recuperer les renseignement envoye via url
         dump($quantite);
 
+        $panier=$session->get('panier',[]); 
+        // creation de la variable panier  
+        // $panier=[ ] // tableau vide
+
         if ($user){
             // on cherche si une ligne de panier existe deja pour cet utilisateur et ce produit
             $ligne=$repo->findOneBy(['user'=>$user,'produit'=>$produit]);
